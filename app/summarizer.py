@@ -11,14 +11,21 @@ genai.configure(
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 
+
 def summarize_text(text):
 
-    prompt = f"""
-    Summarize the following YouTube transcript.
+    text = text[:30000]
 
-    Give:
-    1. Summary
-    2. Key Takeaways
+    prompt = f"""
+    You are an expert note-taking assistant.
+
+    Analyze the following YouTube transcript and generate:
+
+    1. Video Title
+    2. Executive Summary (5-10 lines)
+    3. Key Concepts (5 bullet points)
+    4. Key Takeaways (5 bullet points)
+    5. Interview Questions (5 questions)
 
     Transcript:
     {text}
