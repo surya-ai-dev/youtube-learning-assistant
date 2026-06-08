@@ -23,6 +23,12 @@ def summarize_text(combined_text):
 
             1. Transcript content
             2. Visual content extracted from video frames
+            
+            Generate Code Examples only if actual code
+            is present in transcript or OCR content.
+
+            Otherwise return:
+            "No code examples found."
 
             Generate:
 
@@ -35,7 +41,7 @@ def summarize_text(combined_text):
 
             Content:
 
-            {combined_content}
+            {combined_text}
             """
 
     response = model.generate_content(prompt)

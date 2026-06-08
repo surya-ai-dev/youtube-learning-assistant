@@ -1,7 +1,12 @@
 venv/
 .env
+
 __pycache__/
 *.pyc
-videos/video.mp4
-frames/*.jpg
-test.py
+
+videos/
+frames/
+unique_frames/
+ocr_output/
+
+notes.pdf

@@ -81,31 +81,61 @@ from app.video_downloader import download_video
 # print("\nExtracted Text:\n")
 # print(text)
 
-#all the image
-import os
+# #all the image
+# import os
 
-from app.ocr_service import extract_text
-from app.summarizer import summarize_text
+# from app.ocr_service import extract_text
+# from app.summarizer import summarize_text
+# from app.transcript import get_transcript
+
+
+# import os
+
+# from app.ocr_service import extract_text
+
+# ocr_text=" "
+# for image in os.listdir("unique_frames"):
+
+#     path = os.path.join(
+#         "unique_frames",
+#         image
+#     )
+
+    
+#     ocr_text += extract_text(path)+" "
+    
+# url = input("Enter YouTube URL: ")
+# transcript_text=get_transcript(url)
+# combined_content = f"""
+
+# TRANSCRIPT CONTENT
+
+# {transcript_text}
+
+
+# VISUAL CONTENT (OCR)
+
+# {ocr_text}
+
+# """
+# print(summarize_text(combined_content))
+
+
+
+
+    
+    
 from app.transcript import get_transcript
+from app.summarizer import summarize_text
+from app.pdf_generator import generate_pdf
 
+url = input("Enter YouTube URL: ")
 
-for image in os.listdir("unique_frames"):
+transcript = get_transcript(url)
 
-    path = os.path.join(
-        "unique_frames",
-        image
-    )
-    print(f"\n===== {image} =====")
-    ocr_text=extract_text(path)
-    url = input("Enter YouTube URL: ")
-    transcript=get_transcript(url)
-    combined_content = (
-    transcript +
-    "\n\n" +
-    ocr_text
-    )
-    summarize_text(com)
-    
-    
-    
+notes = summarize_text(transcript)
+
+pdf_file = generate_pdf(notes)
+
+print(f"PDF Generated: {pdf_file}")    
     
