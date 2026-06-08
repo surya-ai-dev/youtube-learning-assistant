@@ -1,3 +1,12 @@
+
+from app.transcript import get_transcript
+from app.summarizer import summarize_text
+from app.pdf_generator import generate_pdf
+from app.video_downloader import download_video
+
+
+# Transcript Extract From Youtube
+
 # from app.transcript import get_transcript
 
 # url = input("Enter YouTube URL: ")
@@ -8,12 +17,9 @@
 
 
 
-from app.transcript import get_transcript
-from app.summarizer import summarize_text
-from app.pdf_generator import generate_pdf
-from app.video_downloader import download_video
 
 
+### SUMMARY
 # url = input("Enter YouTube URL: ")
 
 # transcript = get_transcript(url)
@@ -54,11 +60,52 @@ from app.video_downloader import download_video
 
 
 #---> Remove duplicate Frames
-from app.frame_filter import remove_duplicate_frames
+# from app.frame_filter import remove_duplicate_frames
 
-frames = remove_duplicate_frames()
+# frames = remove_duplicate_frames()
 
-print(f"Unique Frames: {len(frames)}")
+# print(f"Unique Frames: {len(frames)}")
 
-for frame in frames:
-    print(frame)
+# for frame in frames:
+#     print(frame)
+
+
+
+#OCR--one image
+# from app.ocr_service import extract_text
+
+# image_path = "frames/frame_27.jpg"
+
+# text = extract_text(image_path)
+
+# print("\nExtracted Text:\n")
+# print(text)
+
+#all the image
+import os
+
+from app.ocr_service import extract_text
+from app.summarizer import summarize_text
+from app.transcript import get_transcript
+
+
+for image in os.listdir("unique_frames"):
+
+    path = os.path.join(
+        "unique_frames",
+        image
+    )
+    print(f"\n===== {image} =====")
+    ocr_text=extract_text(path)
+    url = input("Enter YouTube URL: ")
+    transcript=get_transcript(url)
+    combined_content = (
+    transcript +
+    "\n\n" +
+    ocr_text
+    )
+    summarize_text(com)
+    
+    
+    
+    

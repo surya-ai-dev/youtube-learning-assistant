@@ -1,8 +1,12 @@
 import os
+import shutil
 from PIL import Image
 import imagehash
 
-
+os.makedirs(
+    "unique_frames",
+    exist_ok=True
+)
 def remove_duplicate_frames(
     frame_folder="frames",
     threshold=5
@@ -35,5 +39,14 @@ def remove_duplicate_frames(
             hashes.append(current_hash)
 
             unique_frames.append(path)
+            destination = os.path.join(
+                "unique_frames",
+                file
+            )
+
+            shutil.copy(
+                path,
+                destination
+            )
 
     return unique_frames

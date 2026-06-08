@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 videos/video.mp4
 frames/*.jpg
+test.py
